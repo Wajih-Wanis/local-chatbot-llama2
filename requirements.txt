@@ -1,0 +1,13 @@
+pypdf==3.12.0
+PyPDF2==3.0.1
+langchain==0.0.302
+torch==2.1.0.dev20230720+cu121
+torchaudio==2.1.0.dev20230720+cu121
+torchvision==0.16.0.dev20230720+cu121
+accelerate==0.21.0
+ctransformers==0.2.27
+sentence-transformers==2.2.2
+simpletransformers==0.63.11
+transformers==4.30.2
+faiss-cpu==1.7.4
+chainlit==0.7.0
