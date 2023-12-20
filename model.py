@@ -7,9 +7,9 @@ from langchain.chains import RetrievalQA
 import chainlit as cl
 
 
-dbFaissPath = "vectorstores/db_faiss/"
+DB_FAISS_PATH = "vectorstores/db_faiss/"
 
-customPromptTemplate = """Use the following pieces of information to answer the user's question.
+CUSTOM_PROMPT_TEMPLATE = """Use the following pieces of information to answer the user's question.
 If you don't know the answer, please just say that you don't know the answer, don't try to make up an answer.
 
 Context = {context}
@@ -22,7 +22,7 @@ Helpful answer:
 def setCustomPrompt():
     #Prompt template for QA retrieval for each vector stores 
 
-    prompt = PromptTemplate(template=customPromptTemplate,
+    prompt = PromptTemplate(template=CUSTOM_PROMPT_TEMPLATE,
                             input_variables=['context','question'])
 
     return prompt
@@ -51,7 +51,7 @@ def qaBot():
     embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2',
     model_kwargs={'device':'cpu'})
 
-    db = FAISS.load_local(dbFaissPath, embeddings)
+    db = FAISS.load_local(DB_FAISS_PATH, embeddings)
     llm = loadLLM()
     qaPrompt = setCustomPrompt()
     qa = retrievalQaChain(llm, qaPrompt, db)

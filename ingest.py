@@ -3,12 +3,12 @@ from langchain.document_loaders import	PyPDFLoader,DirectoryLoader
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 
-dataPath = "data/"
-dbFaissPath = "vectorstores/db_faiss"
+DATA_PATH = "data/"
+DB_FAISS_PATH = "vectorstores/db_faiss"
 
 #Vector database creation 
 def createVectorDb():
-    loader = DirectoryLoader(dataPath,glob='*.pdf',loader_cls=PyPDFLoader)
+    loader = DirectoryLoader(DATA_PATH,glob='*.pdf',loader_cls=PyPDFLoader)
     documents = loader.load()
     textSplitter = RecursiveCharacterTextSplitter(chunk_size= 500, chunk_overlap= 50)
     texts = textSplitter.split_documents(documents)
@@ -17,7 +17,7 @@ def createVectorDb():
     model_kwargs={'device':'cpu'})
     
     db = FAISS.from_documents(texts,embeddings)
-    db.save_local(dbFaissPath)
+    db.save_local(DB_FAISS_PATH)
 
 if __name__ == '__main__':
     createVectorDb()
