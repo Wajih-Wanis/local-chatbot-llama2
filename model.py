@@ -32,7 +32,7 @@ def loadLLM():
         #Change this model to the one you are using
         model="llama-2-13b-chat.ggmlv3.q8_0.bin",
         model_type="llama",
-        max_new_tokens=1024,
+        max_new_tokens=512,
         temperature= 0.5
     )
     return llm
